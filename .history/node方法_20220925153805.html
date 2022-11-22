@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+
+		<p>1、当把一个数组赋值给另一个数组的时，只是给被赋值的数组增加了一个新的引用。当原引用数组被改变后，被赋值的数组也会跟着改变。所以我们需要深度复制，将数组内的每个元素一个个赋值给另一个数组。</p>
+		<script>
+			var nums1 = []; // 1-100
+			var nums2 = [];
+			for(var i = 0; i < 100; i++){
+				nums1[i] = i+1;
+				nums2[i] = i+1;
+			}
+
+			// 将数组内的每个元素一个个赋值给另一个数组。
+			function copy(arr1, arr2){
+				for(var i = 0; i < arr1.length; i++){
+					arr2[i] = arr1[i]
+				}
+			}
+
+			var samenums1 = nums1; // 浅复制
+			nums1[0] = 400
+			console.log('word 1: '+samenums1[0]) // 400
+
+			var samenums2 = []
+			copy(nums2,samenums2)	 // 深复制
+			nums2[0] = 400
+			console.log('word 1: '+samenums2[0]) // 1
+		</script>
+
+		<p>2、查找元素：indexOf('查找目标') lastIndexOf('查找目标')<br />
+			查找成功：查找元素的下标<br />
+			查找不到：-1<br />
+			特性：有多个相同的元素，只返回第一个。lastIndexOf返回最后一个
+		</p>
+		<script>
+			var indexArr = ["daom","fhjak","vnska","daom"]
+			console.log('word 2: '+indexArr.indexOf('vnska')) // 2
+			console.log('word 2: '+indexArr.indexOf('dad'))   // -1
+			console.log('word 2: '+indexArr.lastIndexOf('daom'))   // 3
+		</script>
+
+		<p>3、将数组转为字符串：join()  toString()</p>
+		<script>
+			var indexArr = ["daom","fhjak","vnska","daom"]
+			console.log('word 3: '+indexArr.join())
+			console.log('word 3: '+indexArr.toString()) 
+			// daom,fhjak,vnska,daom
+		</script>
+
+		<p>4、由已有数组创建新数组：<br />
+			concat()：合并多个数组，返回一个新的数组<br />
+			splice()：截取一个数组的子集，返回一个新的数组<br />
+		</p>
+
+	
+
+	</body>
+</html>

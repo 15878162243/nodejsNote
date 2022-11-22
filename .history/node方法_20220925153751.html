@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+
+		<p>1、当把一个数组赋值给另一个数组的时，只是给被赋值的数组增加了一个新的引用。当原引用数组被改变后，被赋值的数组也会跟着改变。所以我们需要深度复制，将数组内的每个元素一个个赋值给另一个数组。</p>
+		<script>
+			var nums1 = []; // 1-100
+			var nums2 = [];
+			for(var i = 0; i < 100; i++){
+				nums1[i] = i+1;
+				nums2[i] = i+1;
+			}
+
+			// 将数组内的每个元素一个个赋值给另一个数组。
+			function copy(arr1, arr2){
+				for(var i = 0; i < arr1.length; i++){
+					arr2[i] = arr1[i]
+				}
+			}
+
+			var samenums1 = nums1; // 浅复制
+			nums1[0] = 400
+			console.log('word 1: '+samenums1[0]) // 400
+
+			var samenums2 = []
+			copy(nums2,samenums2)	 // 深复制
+			nums2[0] = 400
+			console.log('word 1: '+samenums2[0]) // 1
+		</script>
+
+		<p>2、查找元素：indexOf('查找目标') lastIndexOf('查找目标')<br />
+			查找成功：查找元素的下标<br />
+			查找不到：-1<br />
+			特性：有多个相同的元素，只返回第一个。lastIndexOf返回最后一个
+		</p>
+		<script>
+			var indexArr = ["daom","fhjak","vnska","daom"]
+			console.log('word 2: '+indexArr.indexOf('vnska')) // 2
+			console.log('word 2: '+indexArr.indexOf('dad'))   // -1
+			console.log('word 2: '+indexArr.lastIndexOf('daom'))   // 3
+		</script>
+
+		<p>3、将数组转为字符串：join()  toString()</p>
+		<script>
+			var indexArr = ["daom","fhjak","vnska","daom"]
+			console.log('word 3: '+indexArr.join())
+			console.log('word 3: '+indexArr.toString()) 
+			// daom,fhjak,vnska,daom
+		</script>
+
+		<p>4、由已有数组创建新数组：<br />
+			concat()：合并多个数组，返回一个新的数组<br />
+			splice()：截取一个数组的子集，返回一个新的数组<br />
+		</p>
+
+		<h3>可变函数</h3>
+		可变函数：不必引用数组中的某个元素，就能改变数组内容。
+
+		<p>5、为数组添加元素：<br />
+			push()：将元素添加到数组末尾<br />
+			unshift()：将元素添加到数组开头<br />
+		</p>
+		<script>
+			let num = [3,4,5]
+			num.unshift(1,2) 	// 可同时添加多个
+			// 当字符串和数组一起输出时，会直接输出整个字符串 // word 5: 1,2,3,4,5
+			console.log('word 5:', num)	// [1, 2, 3, 4, 5]
+		</script>
+
+		<p>6、删除数组的前后元素：<br />
+			pop()：删除数组末尾元素<br />
+			shift()：删除数组第一位元素<br />
+		</p>
+
+		<p>7、从数组中间增删元素：<br />
+			splice(begin,number,...numbers)：
+			(begin: 起始索引)
+			(number：删除个数)
+			(...numbers：需要添加的的元素)
+			<br />
+		</p>
+
+		<p>8、翻转数组：<br />
+			reverse()<br />
+		</p>
+
+		<p>9、为数组排序：<br />
+			sort()<br />
+		</p>
+		<script>
+			let arr9 = [3,100,2,200,1,300]
+			console.log('word 9: ',arr9.sort()) // [1, 100, 2, 200, 3, 300]
+			console.log('word 9: ',arr9.sort(compare)) // [1, 2, 3, 100, 200, 300]
+
+			// 大小比较函数
+			function compare(num1,num2){
+				return num1 - num2
+			}
+		</script>
+
+		<h3>迭代器方法</h3>
+		迭代器方法：对数组中的每个元素应用一个函数，可以返回一个值，一组值或一个新数组
+		<h4>不生成新数组的迭代器方法</h4>
+		<p>10、<br />
+			forEach(): 该方法接受一个函数作为参数，对数组中的每个元素使用该函数。
+		</p>
+		<script>
+			function square(num){
+				console.log('word 10: ', num, num * num)
+			}
+			let num10 = [1, 2, 3, 4, 5]
+			num10.forEach(	)
+		</script>
+
+		<p>11、<br />
+			every(): 该方法接受一个返回值为布尔类型的函数，对数组中的每个元素使用该函数。
+		</p>
+		<script>
+			function isEven(num){
+				return num % 2 == 0
+			}
+			let num11 = [2, 4, 6, 8]
+			let even = num11.every(isEven)
+			if(even){
+				console.log('word 11: all')
+			}else{
+				console.log('word 11: not')
+			}
+		</script>
+
+		<p>12、<br />
+			some(): 该方法接受一个返回值为布尔类型的函数，只要有一个元素使得该函数返回true，该方法就返回。
+		</p>
+		<script>
+			function isEven(num){
+				return num % 2 == 0
+			}
+			let num12 = [2,4,6,8,10]
+			let num121 = [1,3,5,7,9]
+			console.log('word 12: ',num12.some(isEven))   // true
+			console.log('word 12: ',num121.some(isEven))	// false
+		</script>
+
+		<p>13、<br />
+			reduce(): 该方法接受一个函数，该方法会从第一个元素累加最后到一个元素，最后返回得到的累加值，也可以用于连接字符串。
+		</p>
+		<script>
+			function add(add1,add2){
+				return add1 + add2
+			}
+			let num13 = [1,2,3,4,5,6,7,8,9,10]
+			let reduce13 = ["daom","fhjak","vnska","daom"]
+			console.log('word 13: ',num13.reduce(add)) // 55
+			console.log('word 13: ',reduce13.reduce(add)) // daomfhjakvnskadaom
+		</script>
+
+		<h4>成新数组的迭代器方法</h4>
+		<p>13、<br />
+			map(): 和forEach差不多，map返回的是新数组。<br/>
+			filter()：接收一个函数，当前值为true的时候才会输出当前值（过滤和筛选）。
+		</p>
+
+		<h3>二维和多维数组</h3>
+		<h4>创建数组</h4>
+
+	</body>
+</html>
