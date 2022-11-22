@@ -146,7 +146,7 @@ Buffer 提供了以下 API 来创建 Buffer 类：
 - **Buffer.allocUnsafeSlow(size)**
 - **Buffer.from(array)：** 返回一个被 array 的值初始化的新的 Buffer 实例（传入的 array 的元素只能是数字，不然就会自动被 0 覆盖）
 - **Buffer.from(arrayBuffer, byteOffset, length)：** 返回一个新建的与给定的 ArrayBuffer 共享同一内存的 Buffer。
-- **Buffer.from(buffer)：** 复制传入的 Buffer 实例的数据，并返回一个新的 Buffer 实例
+- **Buffer.from(buffer)：** 复制传入的 Buffer 实例的数据，并返回一个新的 Buffer 实例。
 - **Buffer.from(string[, encoding])：** 返回一个被 string 的值初始化的新的 Buffer 实例。
 
 ```js
